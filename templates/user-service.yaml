@@ -1,0 +1,16 @@
+# User Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-user-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: user-service
+spec:
+  type: {{ .Values.user.service.type }}
+  selector:
+    app: user-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.user.service.port }}
+      targetPort: {{ .Values.user.service.targetPort }}

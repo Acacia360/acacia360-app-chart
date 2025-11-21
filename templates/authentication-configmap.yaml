@@ -1,0 +1,14 @@
+# Authentication Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-authentication-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.authentication.config.PORT }}"
+  DB_HOST: "{{ .Values.authentication.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.authentication.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.authentication.config.DB_NAME }}"
+  # Internal microservice URLs (uncomment/template as needed)
+  # USER_SERVICE_URL: "http://user-service:3001"

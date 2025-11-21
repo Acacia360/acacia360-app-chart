@@ -1,0 +1,300 @@
+# Default values for acacia360-app-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# GLOBAL SETTINGS
+global:
+  clusterDomain: default.svc.cluster.local
+
+# FRONTEND SERVICE (acacia360-frontend)
+frontend:
+  # Deployment Settings
+  replicaCount: 3
+  image:
+    repository: acaciagreentechnologies/acacia360-frontend
+    tag: 1.0 
+    pullPolicy: IfNotPresent
+  
+  # Service Settings (Required for deployment/ingress templates)
+  service:
+    type: ClusterIP
+    port: 80 
+  
+  # Resource Limits (Required for deployment template)
+  resources:
+    limits:
+      memory: "128Mi"
+      cpu: "200m"
+
+  # Ingress Settings (Required for ingress template)
+  ingress:
+    enabled: true
+    className: nginx
+    host: acacia360.local
+    path: /
+    pathType: Prefix
+    
+  # Nginx ConfigMap Settings (Required for configmap template)
+  nginx:
+    apiGatewayServiceName: gateway-service
+    apiGatewayPort: 3050
+    apiPathPrefix: /api/
+
+# GATEWAY SERVICE (gateway-service)
+gateway:
+  # Deployment Settings (Required for deployment template)
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/gateway-service
+    tag: 1.0 
+    pullPolicy: Always
+  
+  # Service Settings (Required for service template)
+  service:
+    port: 3050
+    targetPort: 3050
+    type: ClusterIP
+
+  # Environment Variables / ConfigMap (Required for configmap template)
+  config:
+    PORT: "3050"
+
+  # Secret Variables (Required for secret template)
+  secret:
+    JWT_SECRET: "supersecretkey" 
+
+  # Resource Limits (Required for deployment template)
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# USER SERVICE (user-service)
+user:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/user-service
+    tag: 1.0 
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3001
+    targetPort: 3001
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3001"
+    DB_HOST: "host.docker.internal" 
+    DB_PORT: "5432"
+    DB_NAME: "user_db"
+    # AUTHENTICATION_SERVICE_URL: "http://authentication-service:3000"
+    # PORTFOLIO_SERVICE_URL: "http://portfolio-service:3002"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey" 
+    GMAIL_USER: "sravankm1@gmail.com"
+    GMAIL_PASS: "axby tzzw ahep wqok" 
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# AUTHENTICATION SERVICE (authentication-service)
+authentication:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/authentication-service
+    tag: 1.0 
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3000
+    targetPort: 3000
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3000"
+    DB_HOST: "host.docker.internal" 
+    DB_PORT: "5432"
+    DB_NAME: "authentication_db"
+    # USER_SERVICE_URL: "http://user-service:3001"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey" 
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# GENERIC/UNUSED SECTIONS (Retained for completeness)
+replicaCount: 1 
+imagePullSecrets: []
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+serviceAccount:
+  # Specifies whether a service account should be created.
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account.
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template.
+  name: ""
+
+# This is for setting Kubernetes Annotations to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+# This is for setting Kubernetes Labels to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+service:
+  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+  type: ClusterIP
+  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
+  port: 80
+
+# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+    # - secretName: chart-example-tls
+    #   hosts:
+    #     - chart-example.local
+
+# -- Expose the service via gateway-api HTTPRoute
+# Requires Gateway API resources and suitable controller installed within the cluster
+# (see: https://gateway-api.sigs.k8s.io/guides/)
+httpRoute:
+  # HTTPRoute enabled.
+  enabled: false
+  # HTTPRoute annotations.
+  annotations: {}
+  # Which Gateways this Route is attached to.
+  parentRefs:
+  - name: gateway
+    sectionName: http
+    # namespace: default
+  # Hostnames matching HTTP header.
+  hostnames:
+  - chart-example.local
+  # List of rules and filters applied.
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /headers
+  #   filters:
+  #   - type: RequestHeaderModifier
+  #     requestHeaderModifier:
+  #       set:
+  #       - name: My-Overwrite-Header
+  #         value: this-is-the-only-value
+  #       remove:
+  #       - User-Agent
+  # - matches:
+  #   - path:
+  #       type: PathPrefix
+  #       value: /echo
+  #     headers:
+  #     - name: version
+  #       value: v2
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+# This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+  # - name: foo
+  #   secret:
+  #     secretName: mysecret
+  #     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+  # - name: foo
+  #   mountPath: "/etc/foo"
+  #   readOnly: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

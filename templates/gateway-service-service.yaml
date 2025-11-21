@@ -1,0 +1,16 @@
+# Gateway Service Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-gateway-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: gateway-service
+spec:
+  type: {{ .Values.gateway.service.type }}
+  selector:
+    app: gateway-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.gateway.service.port }}
+      targetPort: {{ .Values.gateway.service.targetPort }}

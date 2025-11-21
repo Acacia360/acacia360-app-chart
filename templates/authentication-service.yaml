@@ -1,0 +1,16 @@
+# Authentication Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-authentication-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: authentication-service
+spec:
+  type: {{ .Values.authentication.service.type }}
+  selector:
+    app: authentication-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.authentication.service.port }}
+      targetPort: {{ .Values.authentication.service.targetPort }}

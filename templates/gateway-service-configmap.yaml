@@ -1,0 +1,13 @@
+# Gateway Service Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-gateway-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.gateway.config.PORT }}"
+
+  # INTERNAL SERVICE ROUTING — cluster DNS
+  # AUTHENTICATION_SERVICE_URL: "http://authentication-service:3000"
+  # USER_SERVICE_URL: "http://user-service:3001"

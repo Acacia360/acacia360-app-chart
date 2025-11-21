@@ -1,0 +1,23 @@
+# Frontend Ingress
+{{- if .Values.frontend.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-frontend-ingress
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: acacia360-frontend
+spec:
+  ingressClassName: {{ .Values.frontend.ingress.className }}
+  rules:
+    - host: {{ .Values.frontend.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.frontend.ingress.path }}
+            pathType: {{ .Values.frontend.ingress.pathType }}
+            backend:
+              service:
+                name: {{ include "acacia360-app-chart.fullname" . }}-frontend-service
+                port:
+                  number: {{ .Values.frontend.service.port }}
+{{- end }}

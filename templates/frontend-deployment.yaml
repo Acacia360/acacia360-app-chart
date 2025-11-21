@@ -1,0 +1,42 @@
+# Frontend Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-frontend
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: acacia360-frontend
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      app: acacia360-frontend
+  template:
+    metadata:
+      labels:
+        app: acacia360-frontend
+    spec:
+      containers:
+      - name: acacia360-frontend
+        image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+        imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        resources:
+          {{- toYaml .Values.frontend.resources | nindent 10 }}
+        
+        # Volume mount to override the default Nginx configuration
+        volumeMounts:
+        - name: nginx-config-volume
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: nginx.conf
+          readOnly: true
+      
+      # Define the volume that pulls data from the ConfigMap
+      volumes:
+      - name: nginx-config-volume
+        configMap:
+          name: {{ include "acacia360-app-chart.fullname" . }}-frontend-config
+          items:
+          - key: nginx.conf
+            path: nginx.conf

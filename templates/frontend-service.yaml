@@ -1,0 +1,16 @@
+# Frontend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-frontend-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: acacia360-frontend
+spec:
+  type: {{ .Values.frontend.service.type }}
+  ports:
+    - port: {{ .Values.frontend.service.port }}
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: acacia360-frontend

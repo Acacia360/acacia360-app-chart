@@ -4,7 +4,7 @@
 
 # GLOBAL SETTINGS
 global:
-  clusterDomain: default.svc.cluster.local
+  clusterDomain: acacia360.svc.cluster.local
 
 # FRONTEND SERVICE (acacia360-frontend)
 frontend:
@@ -12,7 +12,7 @@ frontend:
   replicaCount: 3
   image:
     repository: acaciagreentechnologies/acacia360-frontend
-    tag: 1.0 
+    tag: 1.5
     pullPolicy: IfNotPresent
   
   # Service Settings (Required for deployment/ingress templates)
@@ -46,7 +46,7 @@ gateway:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/gateway-service
-    tag: 1.0 
+    tag: 1.4
     pullPolicy: Always
   
   # Service Settings (Required for service template)
@@ -58,6 +58,9 @@ gateway:
   # Environment Variables / ConfigMap (Required for configmap template)
   config:
     PORT: "3050"
+    AUTHENTICATION_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-authentication-service.acacia360.svc.cluster.local:3000"
+    USER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
+
 
   # Secret Variables (Required for secret template)
   secret:
@@ -78,7 +81,7 @@ user:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/user-service
-    tag: 1.0 
+    tag: 1.1
     pullPolicy: Always
   
   # Service Settings
@@ -90,11 +93,10 @@ user:
   # ConfigMap Variables
   config:
     PORT: "3001"
-    DB_HOST: "host.docker.internal" 
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
     DB_PORT: "5432"
     DB_NAME: "user_db"
-    # AUTHENTICATION_SERVICE_URL: "http://authentication-service:3000"
-    # PORTFOLIO_SERVICE_URL: "http://portfolio-service:3002"
 
   # Secret Variables
   secret:
@@ -119,7 +121,7 @@ authentication:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/authentication-service
-    tag: 1.0 
+    tag: 1.1
     pullPolicy: Always
   
   # Service Settings
@@ -131,10 +133,10 @@ authentication:
   # ConfigMap Variables
   config:
     PORT: "3000"
-    DB_HOST: "host.docker.internal" 
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
     DB_PORT: "5432"
     DB_NAME: "authentication_db"
-    # USER_SERVICE_URL: "http://user-service:3001"
 
   # Secret Variables
   secret:
@@ -224,7 +226,7 @@ httpRoute:
   parentRefs:
   - name: gateway
     sectionName: http
-    # namespace: default
+    # namespace: acacia360
   # Hostnames matching HTTP header.
   hostnames:
   - chart-example.local

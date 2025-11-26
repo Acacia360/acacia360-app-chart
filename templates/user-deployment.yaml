@@ -29,28 +29,26 @@ spec:
             - secretRef:
                 name: {{ include "acacia360-app-chart.fullname" . }}-user-secret
 
-          # Override the Secret's envFrom for specific keys for clarity/control
           env:
-          - name: DB_USER
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "acacia360-app-chart.fullname" . }}-user-secret
-                key: DB_USER
-          - name: DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "acacia360-app-chart.fullname" . }}-user-secret
-                key: DB_PASSWORD
-          - name: JWT_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: {{ include "acacia360-app-chart.fullname" . }}-user-secret
-                key: JWT_SECRET
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-user-secret
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-user-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-user-secret
+                  key: JWT_SECRET
 
-          # ----- Health Checks -----
           livenessProbe:
             httpGet:
-              path: /health # Assuming your service has a /health endpoint
+              path: /health
               port: {{ .Values.user.service.port }}
             initialDelaySeconds: 10
             periodSeconds: 10
@@ -62,6 +60,5 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
 
-          # ----- Resource Control -----
           resources:
             {{- toYaml .Values.user.resources | nindent 12 }}

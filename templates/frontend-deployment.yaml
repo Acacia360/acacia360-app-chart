@@ -17,26 +17,22 @@ spec:
         app: acacia360-frontend
     spec:
       containers:
-      - name: acacia360-frontend
-        image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
-        imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
-        ports:
-        - containerPort: 80
-        resources:
-          {{- toYaml .Values.frontend.resources | nindent 10 }}
-        
-        # Volume mount to override the default Nginx configuration
-        volumeMounts:
-        - name: nginx-config-volume
-          mountPath: /etc/nginx/conf.d/default.conf
-          subPath: nginx.conf
-          readOnly: true
-      
-      # Define the volume that pulls data from the ConfigMap
+        - name: acacia360-frontend
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+          resources:
+            {{- toYaml .Values.frontend.resources | nindent 12 }}
+          volumeMounts:
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: nginx.conf
+              readOnly: true
       volumes:
-      - name: nginx-config-volume
-        configMap:
-          name: {{ include "acacia360-app-chart.fullname" . }}-frontend-config
-          items:
-          - key: nginx.conf
-            path: nginx.conf
+        - name: nginx-config-volume
+          configMap:
+            name: {{ include "acacia360-app-chart.fullname" . }}-frontend-config
+            items:
+              - key: nginx.conf
+                path: nginx.conf

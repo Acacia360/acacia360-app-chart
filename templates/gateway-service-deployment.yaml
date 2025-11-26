@@ -32,7 +32,7 @@ spec:
           # Health Checks
           livenessProbe:
             httpGet:
-              path: /health # Assuming your service has a /health endpoint
+              path: /health
               port: {{ .Values.gateway.service.port }}
             initialDelaySeconds: 10
             periodSeconds: 10

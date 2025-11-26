@@ -10,6 +10,6 @@ data:
   DB_HOST: "{{ .Values.user.config.DB_HOST }}"
   DB_PORT: "{{ .Values.user.config.DB_PORT }}"
   DB_NAME: "{{ .Values.user.config.DB_NAME }}"
+  
   # Internal microservice URLs (uncomment/template as needed)
-  # AUTHENTICATION_SERVICE_URL: "http://authentication-service:3000"
-  # PORTFOLIO_SERVICE_URL: "http://portfolio-service:3002"
+  AUTHENTICATION_SERVICE_URL: "{{ .Values.gateway.config.AUTHENTICATION_SERVICE_URL }}"

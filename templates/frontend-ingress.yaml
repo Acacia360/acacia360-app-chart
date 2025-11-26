@@ -7,6 +7,7 @@ metadata:
   labels:
     {{- include "acacia360-app-chart.labels" . | nindent 4 }}
     app: acacia360-frontend
+  annotations: {}
 spec:
   ingressClassName: {{ .Values.frontend.ingress.className }}
   rules:
@@ -20,4 +21,12 @@ spec:
                 name: {{ include "acacia360-app-chart.fullname" . }}-frontend-service
                 port:
                   number: {{ .Values.frontend.service.port }}
+
+          - path: /api/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "acacia360-app-chart.fullname" . }}-gateway-service
+                port:
+                  number: {{ .Values.gateway.service.port }}
 {{- end }}

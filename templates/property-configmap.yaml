@@ -1,0 +1,39 @@
+# Property Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-property-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.property.config.PORT }}"
+  DB_HOST: "{{ .Values.property.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.property.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.property.config.DB_NAME }}"
+
+  # Internal microservice URLs
+  FLOOR_SERVICE_URL: "{{ .Values.gateway.config.FLOOR_SERVICE_URL }}"
+  ROOM_SERVICE_URL: "{{ .Values.gateway.config.ROOM_SERVICE_URL }}"
+
+  AC_WALL_CONTROLLER_SERVICE_URL: "{{ .Values.gateway.config.AC_WALL_CONTROLLER_SERVICE_URL }}"
+  AHU_SERVICE_URL: "{{ .Values.gateway.config.AHU_SERVICE_URL }}"
+  BOILER_SERVICE_URL: "{{ .Values.gateway.config.BOILER_SERVICE_URL }}"
+  DB_UNIT_SERVICE_URL: "{{ .Values.gateway.config.DB_UNIT_SERVICE_URL }}"
+  ELECTRICAL_METER_SERVICE_URL: "{{ .Values.gateway.config.ELECTRICAL_METER_SERVICE_URL }}"
+  EXTRACTOR_FAN_SERVICE_URL: "{{ .Values.gateway.config.EXTRACTOR_FAN_SERVICE_URL }}"
+  FAN_SERVICE_URL: "{{ .Values.gateway.config.FAN_SERVICE_URL }}"
+  FCU_SERVICE_URL: "{{ .Values.gateway.config.FCU_SERVICE_URL }}"
+  FLOW_METER_SERVICE_URL: "{{ .Values.gateway.config.FLOW_METER_SERVICE_URL }}"
+  HVAC_SERVICE_URL: "{{ .Values.gateway.config.HVAC_SERVICE_URL }}"
+  KETTLE_SERVICE_URL: "{{ .Values.gateway.config.KETTLE_SERVICE_URL }}"
+  LIGHT_CONTROLLER_SERVICE_URL: "{{ .Values.gateway.config.LIGHT_CONTROLLER_SERVICE_URL }}"
+  LUMINAIRE_SERVICE_URL: "{{ .Values.gateway.config.LUMINAIRE_SERVICE_URL }}"
+  PIR_SERVICE_URL: "{{ .Values.gateway.config.PIR_SERVICE_URL }}"
+  SENSOR_SERVICE_URL: "{{ .Values.gateway.config.SENSOR_SERVICE_URL }}"
+  SOCKET_SERVICE_URL: "{{ .Values.gateway.config.SOCKET_SERVICE_URL }}"
+  SWITCH_SERVICE_URL: "{{ .Values.gateway.config.SWITCH_SERVICE_URL }}"
+  TELEPHONE_SERVICE_URL: "{{ .Values.gateway.config.TELEPHONE_SERVICE_URL }}"
+  TELEVISION_SERVICE_URL: "{{ .Values.gateway.config.TELEVISION_SERVICE_URL }}"
+  THERMAL_METER_SERVICE_URL: "{{ .Values.gateway.config.THERMAL_METER_SERVICE_URL }}"
+  WATER_PUMP_SERVICE_URL: "{{ .Values.gateway.config.WATER_PUMP_SERVICE_URL }}"
+  WIFI_AP_SERVICE_URL: "{{ .Values.gateway.config.WIFI_AP_SERVICE_URL }}"

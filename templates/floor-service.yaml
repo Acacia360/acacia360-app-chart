@@ -1,0 +1,16 @@
+# Floor Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-floor-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: floor-service
+spec:
+  type: {{ .Values.floor.service.type }}
+  selector:
+    app: floor-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.floor.service.port }}
+      targetPort: {{ .Values.floor.service.targetPort }}

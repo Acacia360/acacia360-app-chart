@@ -1,0 +1,16 @@
+# Property Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-property-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: property-service
+spec:
+  type: {{ .Values.property.service.type }}
+  selector:
+    app: property-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.property.service.port }}
+      targetPort: {{ .Values.property.service.targetPort }}

@@ -1,0 +1,16 @@
+# Outdoor Statistics Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-outdoor-statistics-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: outdoor-statistics-service
+spec:
+  type: {{ .Values.outdoorStatistics.service.type }}
+  selector:
+    app: outdoor-statistics-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.outdoorStatistics.service.port }}
+      targetPort: {{ .Values.outdoorStatistics.service.targetPort }}

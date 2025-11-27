@@ -1,0 +1,16 @@
+# Building Statistics Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-building-statistics-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: building-statistics-service
+spec:
+  type: {{ .Values.buildingStatistics.service.type }}
+  selector:
+    app: building-statistics-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.buildingStatistics.service.port }}
+      targetPort: {{ .Values.buildingStatistics.service.targetPort }}

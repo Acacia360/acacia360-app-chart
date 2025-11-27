@@ -1,0 +1,16 @@
+# Area Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-area-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: area-service
+spec:
+  type: {{ .Values.area.service.type }}
+  selector:
+    app: area-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.area.service.port }}
+      targetPort: {{ .Values.area.service.targetPort }}

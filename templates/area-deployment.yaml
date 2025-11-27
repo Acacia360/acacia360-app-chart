@@ -1,0 +1,64 @@
+# Area Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-area
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: area-service
+spec:
+  replicas: {{ .Values.area.replicaCount }}
+  selector:
+    matchLabels:
+      app: area-service
+  template:
+    metadata:
+      labels:
+        app: area-service
+    spec:
+      containers:
+        - name: area-service
+          image: "{{ .Values.area.image.repository }}:{{ .Values.area.image.tag }}"
+          imagePullPolicy: {{ .Values.area.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.area.service.port }}
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-area-config
+            - secretRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-area-secret
+
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-area-secret
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-area-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-area-secret
+                  key: JWT_SECRET
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.area.service.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.area.service.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          resources:
+            {{- toYaml .Values.area.resources | nindent 12 }}

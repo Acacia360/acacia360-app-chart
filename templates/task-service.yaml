@@ -1,0 +1,16 @@
+# Task Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-task-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: task-service
+spec:
+  type: {{ .Values.task.service.type }}
+  selector:
+    app: task-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.task.service.port }}
+      targetPort: {{ .Values.task.service.targetPort }}

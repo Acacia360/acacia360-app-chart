@@ -1,0 +1,16 @@
+# Portfolio Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-portfolio-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: portfolio-service
+spec:
+  type: {{ .Values.portfolio.service.type }}
+  selector:
+    app: portfolio-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.portfolio.service.port }}
+      targetPort: {{ .Values.portfolio.service.targetPort }}

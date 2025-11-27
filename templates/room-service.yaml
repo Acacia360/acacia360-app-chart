@@ -1,0 +1,16 @@
+# Room Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-room-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: room-service
+spec:
+  type: {{ .Values.room.service.type }}
+  selector:
+    app: room-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.room.service.port }}
+      targetPort: {{ .Values.room.service.targetPort }}

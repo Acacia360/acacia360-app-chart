@@ -1,0 +1,16 @@
+# Events Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-events-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: events-service
+spec:
+  type: {{ .Values.events.service.type }}
+  selector:
+    app: events-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.events.service.port }}
+      targetPort: {{ .Values.events.service.targetPort }}

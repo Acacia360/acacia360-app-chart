@@ -1,0 +1,12 @@
+# Building Statistics Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-building-statistics-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.buildingStatistics.config.PORT }}"
+  DB_HOST: "{{ .Values.buildingStatistics.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.buildingStatistics.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.buildingStatistics.config.DB_NAME }}"

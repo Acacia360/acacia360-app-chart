@@ -1,0 +1,51 @@
+# Reports Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-reports-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.reports.config.PORT }}"
+  DB_HOST: "{{ .Values.reports.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.reports.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.reports.config.DB_NAME }}"
+
+  # Internal microservice URLs
+  AUTHENTICATION_LOGS_URL: "{{ .Values.gateway.config.AUTHENTICATION_LOGS_URL }}"
+  USER_LOGS_URL: "{{ .Values.gateway.config.USER_LOGS_URL }}"
+  ROLE_LOGS_URL: "{{ .Values.gateway.config.ROLE_LOGS_URL }}"
+  PORTFOLIO_LOGS_URL: "{{ .Values.gateway.config.PORTFOLIO_LOGS_URL }}"
+  PROPERTY_LOGS_URL: "{{ .Values.gateway.config.PROPERTY_LOGS_URL }}"
+  TASK_LOGS_URL: "{{ .Values.gateway.config.TASK_LOGS_URL }}"
+  NOTIFICATIONS_LOGS_URL: "{{ .Values.gateway.config.NOTIFICATIONS_LOGS_URL }}"
+  BUILDING_STATISTICS_LOGS_URL: "{{ .Values.gateway.config.BUILDING_STATISTICS_LOGS_URL }}"
+  OUTDOOR_STATISTICS_LOGS_URL: "{{ .Values.gateway.config.OUTDOOR_STATISTICS_LOGS_URL }}"
+  FLOOR_SERVICE_URL: "{{ .Values.gateway.config.FLOOR_SERVICE_URL }}"
+  ROOM_SERVICE_URL: "{{ .Values.gateway.config.ROOM_SERVICE_URL }}"
+  AREA_LOGS_URL: "{{ .Values.gateway.config.AREA_LOGS_URL }}"
+  EVENTS_LOGS_URL: "{{ .Values.gateway.config.EVENTS_LOGS_URL }}"
+  REPORTS_LOGS_URL: "{{ .Values.gateway.config.REPORTS_LOGS_URL }}"
+
+  AC_WALL_CONTROLLER_LOGS_URL: "{{ .Values.gateway.config.AC_WALL_CONTROLLER_LOGS_URL }}"
+  AHU_LOGS_URL: "{{ .Values.gateway.config.AHU_LOGS_URL }}"
+  BOILER_LOGS_URL: "{{ .Values.gateway.config.BOILER_LOGS_URL }}"
+  DB_UNIT_LOGS_URL: "{{ .Values.gateway.config.DB_UNIT_LOGS_URL }}"
+  ELECTRICAL_METER_LOGS_URL: "{{ .Values.gateway.config.ELECTRICAL_METER_LOGS_URL }}"
+  EXTRACTOR_FAN_LOGS_URL: "{{ .Values.gateway.config.EXTRACTOR_FAN_LOGS_URL }}"
+  FAN_LOGS_URL: "{{ .Values.gateway.config.FAN_LOGS_URL }}"
+  FCU_LOGS_URL: "{{ .Values.gateway.config.FCU_LOGS_URL }}"
+  FLOW_METER_LOGS_URL: "{{ .Values.gateway.config.FLOW_METER_LOGS_URL }}"
+  HVAC_LOGS_URL: "{{ .Values.gateway.config.HVAC_LOGS_URL }}"
+  KETTLE_LOGS_URL: "{{ .Values.gateway.config.KETTLE_LOGS_URL }}"
+  LIGHT_CONTROLLER_LOGS_URL: "{{ .Values.gateway.config.LIGHT_CONTROLLER_LOGS_URL }}"
+  LUMINAIRE_LOGS_URL: "{{ .Values.gateway.config.LUMINAIRE_LOGS_URL }}"
+  PIR_LOGS_URL: "{{ .Values.gateway.config.PIR_LOGS_URL }}"
+  SENSOR_LOGS_URL: "{{ .Values.gateway.config.SENSOR_LOGS_URL }}"
+  SOCKET_LOGS_URL: "{{ .Values.gateway.config.SOCKET_LOGS_URL }}"
+  SWITCH_LOGS_URL: "{{ .Values.gateway.config.SWITCH_LOGS_URL }}"
+  TELEPHONE_LOGS_URL: "{{ .Values.gateway.config.TELEPHONE_LOGS_URL }}"
+  TELEVISION_LOGS_URL: "{{ .Values.gateway.config.TELEVISION_LOGS_URL }}"
+  THERMAL_METER_LOGS_URL: "{{ .Values.gateway.config.THERMAL_METER_LOGS_URL }}"
+  WATER_PUMP_LOGS_URL: "{{ .Values.gateway.config.WATER_PUMP_LOGS_URL }}"
+  WIFI_AP_LOGS_URL: "{{ .Values.gateway.config.WIFI_AP_LOGS_URL }}"

@@ -1,0 +1,15 @@
+# Events Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-events-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.events.config.PORT }}"
+  DB_HOST: "{{ .Values.events.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.events.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.events.config.DB_NAME }}"
+
+  # Internal microservice URLs
+  USER_SERVICE_URL: "{{ .Values.gateway.config.USER_SERVICE_URL }}"

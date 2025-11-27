@@ -11,5 +11,5 @@ data:
   DB_PORT: "{{ .Values.authentication.config.DB_PORT }}"
   DB_NAME: "{{ .Values.authentication.config.DB_NAME }}"
 
-  # Internal microservice URLs (uncomment/template as needed)
+  # Internal microservice URLs
   USER_SERVICE_URL: "{{ .Values.gateway.config.USER_SERVICE_URL }}"

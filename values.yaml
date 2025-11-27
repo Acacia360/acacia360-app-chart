@@ -1,5 +1,3 @@
-# Default values for acacia360-app-chart.
-# This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 # GLOBAL SETTINGS
@@ -20,13 +18,13 @@ frontend:
     type: ClusterIP
     port: 80 
   
-  # Resource Limits (Required for deployment template)
+  # Resource Limits
   resources:
     limits:
       memory: "128Mi"
       cpu: "200m"
 
-  # Ingress Settings (Required for ingress template)
+  # Ingress Settings
   ingress:
     enabled: true
     className: nginx
@@ -34,7 +32,7 @@ frontend:
     path: /
     pathType: Prefix
     
-  # Nginx ConfigMap Settings (Required for configmap template)
+  # Nginx ConfigMap Settings
   nginx:
     apiGatewayServiceName: gateway-service
     apiGatewayPort: 3050
@@ -42,31 +40,144 @@ frontend:
 
 # GATEWAY SERVICE (gateway-service)
 gateway:
-  # Deployment Settings (Required for deployment template)
+  # Deployment Settings
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/gateway-service
     tag: 1.4
     pullPolicy: Always
   
-  # Service Settings (Required for service template)
+  # Service Settings
   service:
     port: 3050
     targetPort: 3050
     type: ClusterIP
 
-  # Environment Variables / ConfigMap (Required for configmap template)
+  # Environment Variables / ConfigMap
   config:
     PORT: "3050"
     AUTHENTICATION_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-authentication-service.acacia360.svc.cluster.local:3000"
     USER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
+    ROLE_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
+    PORTFOLIO_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-portfolio-service.acacia360.svc.cluster.local:3002"
+    PROPERTY_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-property-service.acacia360.svc.cluster.local:3003"
+    TASK_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-task-service.acacia360.svc.cluster.local:3004"
+    NOTIFICATIONS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-notifications-service.acacia360.svc.cluster.local:3005"
+    BUILDING_STATISTICS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-building-statistics-service.acacia360.svc.cluster.local:3006"
+    OUTDOOR_STATISTICS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-outdoor-statistics-service.acacia360.svc.cluster.local:3007"
+    FLOOR_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-floor-service.acacia360.svc.cluster.local:3008"
+    ROOM_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-room-service.acacia360.svc.cluster.local:3009"
+    AREA_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-area-service.acacia360.svc.cluster.local:30010"
+    EVENTS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-events-service.acacia360.svc.cluster.local:3011"
+    REPORTS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-reports-service.acacia360.svc.cluster.local:3012"
+    HOUSEKEEPING_MAINTENANCE_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-houskeeping-maint.acacia360.svc.cluster.local:3013"
+
+    AC_WALL_CONTROLLER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-ac-wall-controller-service.acacia360.svc.cluster.local:3020"
+    AHU_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-ahu-service.acacia360.svc.cluster.local:3021"
+    BOILER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-boiler-service.acacia360.svc.cluster.local:3022"
+    DB_UNIT_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-db-unit-service.acacia360.svc.cluster.local:3023"
+    ELECTRICAL_METER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-electrical-meter-service.acacia360.svc.cluster.local:3024"
+    EXTRACTOR_FAN_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-extractor-fan-service.acacia360.svc.cluster.local:3025"
+    FAN_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-fan-service.acacia360.svc.cluster.local:3026"
+    FCU_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-fcu-service.acacia360.svc.cluster.local:3027"
+    FLOW_METER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-flow-meter-service.acacia360.svc.cluster.local:3028"
+    HVAC_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-hvac-service.acacia360.svc.cluster.local:3029"
+    KETTLE_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-kettle-service.acacia360.svc.cluster.local:3030"
+    LIGHT_CONTROLLER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-light-controller-service.acacia360.svc.cluster.local:3031"
+    LUMINAIRE_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-luminaire-service.acacia360.svc.cluster.local:3032"
+    PIR_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-pir-service.acacia360.svc.cluster.local:3033"
+    SENSOR_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-sensor-service.acacia360.svc.cluster.local:3034"
+    SOCKET_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-socket-service.acacia360.svc.cluster.local:3035"
+    SWITCH_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-switch-service.acacia360.svc.cluster.local:3036"
+    TELEPHONE_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-telephone-service.acacia360.svc.cluster.local:3037"
+    TELEVISION_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-television-service.acacia360.svc.cluster.local:3038"
+    THERMAL_METER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-thermal-meter-service.acacia360.svc.cluster.local:3039"
+    WATER_PUMP_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-water-pump-service.acacia360.svc.cluster.local:3040"
+    WIFI_AP_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-wifi-ap-service.acacia360.svc.cluster.local:3041"
+
+    AUTHENTICATION_LOGS_URL: "http://acacia360-app-acacia360-app-chart-authentication-service.acacia360.svc.cluster.local:3000"
+    USER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
+    ROLE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
+    PORTFOLIO_LOGS_URL: "http://acacia360-app-acacia360-app-chart-portfolio-service.acacia360.svc.cluster.local:3002"
+    PROPERTY_LOGS_URL: "http://acacia360-app-acacia360-app-chart-property-service.acacia360.svc.cluster.local:3003"
+    TASK_LOGS_URL: "http://acacia360-app-acacia360-app-chart-task-service.acacia360.svc.cluster.local:3004"
+    NOTIFICATIONS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-notifications-service.acacia360.svc.cluster.local:3005"
+    BUILDING_STATISTICS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-building-statistics-service.acacia360.svc.cluster.local:3006"
+    OUTDOOR_STATISTICS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-outdoor-statistics-service.acacia360.svc.cluster.local:3007"
+    FLOOR_LOGS_URL: "http://acacia360-app-acacia360-app-chart-floor-service.acacia360.svc.cluster.local:3008"
+    ROOM_LOGS_URL: "http://acacia360-app-acacia360-app-chart-room-service.acacia360.svc.cluster.local:3009"
+    AREA_LOGS_URL: "http://acacia360-app-acacia360-app-chart-area-service.acacia360.svc.cluster.local:30010"
+    EVENTS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-events-service.acacia360.svc.cluster.local:3011"
+    REPORTS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-reports-service.acacia360.svc.cluster.local:3012"
+    HOUSEKEEPING_MAINTENANCE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-houskeeping-maint.acacia360.svc.cluster.local:3013"
+
+    AC_WALL_CONTROLLER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-ac-wall-controller-service.acacia360.svc.cluster.local:3020"
+    AHU_LOGS_URL: "http://acacia360-app-acacia360-app-chart-ahu-service.acacia360.svc.cluster.local:3021"
+    BOILER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-boiler-service.acacia360.svc.cluster.local:3022"
+    DB_UNIT_LOGS_URL: "http://acacia360-app-acacia360-app-chart-db-unit-service.acacia360.svc.cluster.local:3023"
+    ELECTRICAL_METER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-electrical-meter-service.acacia360.svc.cluster.local:3024"
+    EXTRACTOR_FAN_LOGS_URL: "http://acacia360-app-acacia360-app-chart-extractor-fan-service.acacia360.svc.cluster.local:3025"
+    FAN_LOGS_URL: "http://acacia360-app-acacia360-app-chart-fan-service.acacia360.svc.cluster.local:3026"
+    FCU_LOGS_URL: "http://acacia360-app-acacia360-app-chart-fcu-service.acacia360.svc.cluster.local:3027"
+    FLOW_METER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-flow-meter-service.acacia360.svc.cluster.local:3028"
+    HVAC_LOGS_URL: "http://acacia360-app-acacia360-app-chart-hvac-service.acacia360.svc.cluster.local:3029"
+    KETTLE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-kettle-service.acacia360.svc.cluster.local:3030"
+    LIGHT_CONTROLLER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-light-controller-service.acacia360.svc.cluster.local:3031"
+    LUMINAIRE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-luminaire-service.acacia360.svc.cluster.local:3032"
+    PIR_LOGS_URL: "http://acacia360-app-acacia360-app-chart-pir-service.acacia360.svc.cluster.local:3033"
+    SENSOR_LOGS_URL: "http://acacia360-app-acacia360-app-chart-sensor-service.acacia360.svc.cluster.local:3034"
+    SOCKET_LOGS_URL: "http://acacia360-app-acacia360-app-chart-socket-service.acacia360.svc.cluster.local:3035"
+    SWITCH_LOGS_URL: "http://acacia360-app-acacia360-app-chart-switch-service.acacia360.svc.cluster.local:3036"
+    TELEPHONE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-telephone-service.acacia360.svc.cluster.local:3037"
+    TELEVISION_LOGS_URL: "http://acacia360-app-acacia360-app-chart-television-service.acacia360.svc.cluster.local:3038"
+    THERMAL_METER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-thermal-meter-service.acacia360.svc.cluster.local:3039"
+    WATER_PUMP_LOGS_URL: "http://acacia360-app-acacia360-app-chart-water-pump-service.acacia360.svc.cluster.local:3040"
+    WIFI_AP_LOGS_URL: "http://acacia360-app-acacia360-app-chart-wifi-ap-service.acacia360.svc.cluster.local:3041"
 
 
-  # Secret Variables (Required for secret template)
+  # Secret Variables
   secret:
     JWT_SECRET: "supersecretkey" 
 
-  # Resource Limits (Required for deployment template)
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# AUTHENTICATION SERVICE (authentication-service)
+authentication:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/authentication-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3000
+    targetPort: 3000
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3000"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "authentication_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey" 
+
+  # Resource Limits
   resources:
     requests:
       cpu: "100m"
@@ -81,7 +192,7 @@ user:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/user-service
-    tag: 1.1
+    tag: 1.0
     pullPolicy: Always
   
   # Service Settings
@@ -115,34 +226,453 @@ user:
       cpu: "500m"
       memory: "512Mi"
 
-# AUTHENTICATION SERVICE (authentication-service)
-authentication:
+# PORTFOLIO SERVICE (portfolio-service)
+portfolio:
   # Deployment Settings
   replicaCount: 2
   image:
-    repository: acaciagreentechnologies/authentication-service
-    tag: 1.1
+    repository: acaciagreentechnologies/portfolio-service
+    tag: 1.0
     pullPolicy: Always
   
   # Service Settings
   service:
-    port: 3000
-    targetPort: 3000
+    port: 3002
+    targetPort: 3002
     type: ClusterIP
 
   # ConfigMap Variables
   config:
-    PORT: "3000"
+    PORT: "3002"
     # DB_HOST: "host.docker.internal"
     DB_HOST: "192.168.1.135"
     DB_PORT: "5432"
-    DB_NAME: "authentication_db"
+    DB_NAME: "portfolio_db"
 
   # Secret Variables
   secret:
     DB_USER: "postgres"
     DB_PASSWORD: "postgres"
-    JWT_SECRET: "supersecretkey" 
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# PROPERTY SERVICE (property-service)
+property:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/property-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3003
+    targetPort: 3003
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3003"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "property_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# TASK SERVICE (task-service)
+task:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/task-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3004
+    targetPort: 3004
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3004"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "task_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# NOTIFICATIONS SERVICE (notifications-service)
+notifications:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/notifications-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3005
+    targetPort: 3005
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3005"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "notifications_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# BUILDING STATISTICS SERVICE (building-statistics-service)
+buildingStatistics:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/building-statistics-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3006
+    targetPort: 3006
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3006"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "building_statistics_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# OUTDOOR STATISTICS SERVICE (outdoor-statistics-service)
+outdoorStatistics:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/outdoor-statistics-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3007
+    targetPort: 3007
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3007"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "outdoor_statistics_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+    ACCUWEATHER_API_KEY: "zpka_043aa89939954e73889ed7aa774606f9_d7c7344d"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# FLOOR SERVICE (floor-service)
+floor:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/floor-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3008
+    targetPort: 3008
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3008"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "floor_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# ROOM SERVICE (room-service)
+room:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/room-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3009
+    targetPort: 3009
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3009"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "room_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# AREA SERVICE (area-service)
+area:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/area-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3010
+    targetPort: 3010
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3010"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "area_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# REPORTS SERVICE (reports-service)
+reports:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/reports-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3011
+    targetPort: 3011
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3011"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "reports_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# EVENTS SERVICE (events-service)
+events:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/events-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3012
+    targetPort: 3012
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3012"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "events_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# HOUSEKEEPING-MAINTENANCE SERVICE (housekeeping-maintenance-service)
+housekeepingMaintenance:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/housekeeping-maintenance-service
+    tag: 1.0
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3013
+    targetPort: 3013
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3013"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "housekeeping_maintenance_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
 
   # Resource Limits
   resources:

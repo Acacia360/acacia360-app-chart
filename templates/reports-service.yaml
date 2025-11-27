@@ -1,0 +1,16 @@
+# Reports Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-reports-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: reports-service
+spec:
+  type: {{ .Values.reports.service.type }}
+  selector:
+    app: reports-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.reports.service.port }}
+      targetPort: {{ .Values.reports.service.targetPort }}

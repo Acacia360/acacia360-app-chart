@@ -1,0 +1,12 @@
+# Task Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-task-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.task.config.PORT }}"
+  DB_HOST: "{{ .Values.task.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.task.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.task.config.DB_NAME }}"

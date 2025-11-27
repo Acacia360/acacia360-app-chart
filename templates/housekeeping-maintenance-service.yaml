@@ -1,0 +1,16 @@
+# Housekeeping Maintenance Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ printf "%s-%s" (include "acacia360-app-chart.fullname" .) "housekeeping-maintenance-service" | trunc 63 | trimSuffix "-" }}
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: housekeeping-maintenance-service
+spec:
+  type: {{ .Values.housekeepingMaintenance.service.type }}
+  selector:
+    app: housekeeping-maintenance-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.housekeepingMaintenance.service.port }}
+      targetPort: {{ .Values.housekeepingMaintenance.service.targetPort }}

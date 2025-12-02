@@ -10,7 +10,7 @@ frontend:
   replicaCount: 3
   image:
     repository: acaciagreentechnologies/acacia360-frontend
-    tag: 1.5
+    tag: "1.0"
     pullPolicy: IfNotPresent
   
   # Service Settings (Required for deployment/ingress templates)
@@ -44,7 +44,7 @@ gateway:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/gateway-service
-    tag: 1.4
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -58,7 +58,6 @@ gateway:
     PORT: "3050"
     AUTHENTICATION_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-authentication-service.acacia360.svc.cluster.local:3000"
     USER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
-    ROLE_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
     PORTFOLIO_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-portfolio-service.acacia360.svc.cluster.local:3002"
     PROPERTY_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-property-service.acacia360.svc.cluster.local:3003"
     TASK_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-task-service.acacia360.svc.cluster.local:3004"
@@ -95,46 +94,6 @@ gateway:
     WATER_PUMP_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-water-pump-service.acacia360.svc.cluster.local:3040"
     WIFI_AP_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-wifi-ap-service.acacia360.svc.cluster.local:3041"
 
-    AUTHENTICATION_LOGS_URL: "http://acacia360-app-acacia360-app-chart-authentication-service.acacia360.svc.cluster.local:3000"
-    USER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
-    ROLE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-user-service.acacia360.svc.cluster.local:3001"
-    PORTFOLIO_LOGS_URL: "http://acacia360-app-acacia360-app-chart-portfolio-service.acacia360.svc.cluster.local:3002"
-    PROPERTY_LOGS_URL: "http://acacia360-app-acacia360-app-chart-property-service.acacia360.svc.cluster.local:3003"
-    TASK_LOGS_URL: "http://acacia360-app-acacia360-app-chart-task-service.acacia360.svc.cluster.local:3004"
-    NOTIFICATIONS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-notifications-service.acacia360.svc.cluster.local:3005"
-    BUILDING_STATISTICS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-building-statistics-service.acacia360.svc.cluster.local:3006"
-    OUTDOOR_STATISTICS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-outdoor-statistics-service.acacia360.svc.cluster.local:3007"
-    FLOOR_LOGS_URL: "http://acacia360-app-acacia360-app-chart-floor-service.acacia360.svc.cluster.local:3008"
-    ROOM_LOGS_URL: "http://acacia360-app-acacia360-app-chart-room-service.acacia360.svc.cluster.local:3009"
-    AREA_LOGS_URL: "http://acacia360-app-acacia360-app-chart-area-service.acacia360.svc.cluster.local:30010"
-    EVENTS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-events-service.acacia360.svc.cluster.local:3011"
-    REPORTS_LOGS_URL: "http://acacia360-app-acacia360-app-chart-reports-service.acacia360.svc.cluster.local:3012"
-    HOUSEKEEPING_MAINTENANCE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-houskeeping-maint.acacia360.svc.cluster.local:3013"
-
-    AC_WALL_CONTROLLER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-ac-wall-controller-service.acacia360.svc.cluster.local:3020"
-    AHU_LOGS_URL: "http://acacia360-app-acacia360-app-chart-ahu-service.acacia360.svc.cluster.local:3021"
-    BOILER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-boiler-service.acacia360.svc.cluster.local:3022"
-    DB_UNIT_LOGS_URL: "http://acacia360-app-acacia360-app-chart-db-unit-service.acacia360.svc.cluster.local:3023"
-    ELECTRICAL_METER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-electrical-meter-service.acacia360.svc.cluster.local:3024"
-    EXTRACTOR_FAN_LOGS_URL: "http://acacia360-app-acacia360-app-chart-extractor-fan-service.acacia360.svc.cluster.local:3025"
-    FAN_LOGS_URL: "http://acacia360-app-acacia360-app-chart-fan-service.acacia360.svc.cluster.local:3026"
-    FCU_LOGS_URL: "http://acacia360-app-acacia360-app-chart-fcu-service.acacia360.svc.cluster.local:3027"
-    FLOW_METER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-flow-meter-service.acacia360.svc.cluster.local:3028"
-    HVAC_LOGS_URL: "http://acacia360-app-acacia360-app-chart-hvac-service.acacia360.svc.cluster.local:3029"
-    KETTLE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-kettle-service.acacia360.svc.cluster.local:3030"
-    LIGHT_CONTROLLER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-light-controller-service.acacia360.svc.cluster.local:3031"
-    LUMINAIRE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-luminaire-service.acacia360.svc.cluster.local:3032"
-    PIR_LOGS_URL: "http://acacia360-app-acacia360-app-chart-pir-service.acacia360.svc.cluster.local:3033"
-    SENSOR_LOGS_URL: "http://acacia360-app-acacia360-app-chart-sensor-service.acacia360.svc.cluster.local:3034"
-    SOCKET_LOGS_URL: "http://acacia360-app-acacia360-app-chart-socket-service.acacia360.svc.cluster.local:3035"
-    SWITCH_LOGS_URL: "http://acacia360-app-acacia360-app-chart-switch-service.acacia360.svc.cluster.local:3036"
-    TELEPHONE_LOGS_URL: "http://acacia360-app-acacia360-app-chart-telephone-service.acacia360.svc.cluster.local:3037"
-    TELEVISION_LOGS_URL: "http://acacia360-app-acacia360-app-chart-television-service.acacia360.svc.cluster.local:3038"
-    THERMAL_METER_LOGS_URL: "http://acacia360-app-acacia360-app-chart-thermal-meter-service.acacia360.svc.cluster.local:3039"
-    WATER_PUMP_LOGS_URL: "http://acacia360-app-acacia360-app-chart-water-pump-service.acacia360.svc.cluster.local:3040"
-    WIFI_AP_LOGS_URL: "http://acacia360-app-acacia360-app-chart-wifi-ap-service.acacia360.svc.cluster.local:3041"
-
-
   # Secret Variables
   secret:
     JWT_SECRET: "supersecretkey" 
@@ -154,7 +113,7 @@ authentication:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/authentication-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -192,7 +151,7 @@ user:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/user-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -232,7 +191,7 @@ portfolio:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/portfolio-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -270,7 +229,7 @@ property:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/property-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -308,7 +267,7 @@ task:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/task-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -346,7 +305,7 @@ notifications:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/notifications-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -384,7 +343,7 @@ buildingStatistics:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/building-statistics-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -422,7 +381,7 @@ outdoorStatistics:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/outdoor-statistics-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -461,7 +420,7 @@ floor:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/floor-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -499,7 +458,7 @@ room:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/room-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -537,7 +496,7 @@ area:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/area-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -575,7 +534,7 @@ reports:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/reports-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -613,7 +572,7 @@ events:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/events-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings
@@ -651,7 +610,7 @@ housekeepingMaintenance:
   replicaCount: 2
   image:
     repository: acaciagreentechnologies/housekeeping-maintenance-service
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   
   # Service Settings

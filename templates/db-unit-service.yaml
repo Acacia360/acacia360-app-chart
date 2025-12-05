@@ -1,0 +1,16 @@
+# DB Unit Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-db-unit-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: db-unit-service
+spec:
+  type: {{ .Values.dbUnit.service.type }}
+  selector:
+    app: db-unit-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.dbUnit.service.port }}
+      targetPort: {{ .Values.dbUnit.service.targetPort }}

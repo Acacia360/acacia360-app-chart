@@ -1,0 +1,64 @@
+# AC Wall Controller Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: ac-wall-controller-service
+spec:
+  replicas: {{ .Values.acWallController.replicaCount }}
+  selector:
+    matchLabels:
+      app: ac-wall-controller-service
+  template:
+    metadata:
+      labels:
+        app: ac-wall-controller-service
+    spec:
+      containers:
+        - name: ac-wall-controller-service
+          image: "{{ .Values.acWallController.image.repository }}:{{ .Values.ac-wall-controller.image.tag }}"
+          imagePullPolicy: {{ .Values.acWallController.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.acWallController.service.port }}
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller-config
+            - secretRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller-secret
+
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller-secret
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller-secret
+                  key: JWT_SECRET
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.acWallController.service.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.acWallController.service.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          resources:
+            {{- toYaml .Values.acWallController.resources | nindent 12 }}

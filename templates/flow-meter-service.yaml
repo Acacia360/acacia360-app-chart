@@ -1,0 +1,16 @@
+# Flow Meter Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-flow-meter-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: flow-meter-service
+spec:
+  type: {{ .Values.flowMeter.service.type }}
+  selector:
+    app: flow-meter-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.flowMeter.service.port }}
+      targetPort: {{ .Values.flowMeter.service.targetPort }}

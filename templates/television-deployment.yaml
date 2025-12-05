@@ -1,0 +1,64 @@
+# Television Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-television
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: television-service
+spec:
+  replicas: {{ .Values.television.replicaCount }}
+  selector:
+    matchLabels:
+      app: television-service
+  template:
+    metadata:
+      labels:
+        app: television-service
+    spec:
+      containers:
+        - name: television-service
+          image: "{{ .Values.television.image.repository }}:{{ .Values.television.image.tag }}"
+          imagePullPolicy: {{ .Values.television.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.television.service.port }}
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-television-config
+            - secretRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-television-secret
+
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-television-secret
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-television-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-television-secret
+                  key: JWT_SECRET
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.television.service.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.television.service.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          resources:
+            {{- toYaml .Values.television.resources | nindent 12 }}

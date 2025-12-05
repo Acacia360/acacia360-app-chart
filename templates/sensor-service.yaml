@@ -1,0 +1,16 @@
+# Sensor Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-sensor-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: sensor-service
+spec:
+  type: {{ .Values.sensor.service.type }}
+  selector:
+    app: sensor-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.sensor.service.port }}
+      targetPort: {{ .Values.sensor.service.targetPort }}

@@ -1,0 +1,12 @@
+# AC Wall Controller Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.acWallController.config.PORT }}"
+  DB_HOST: "{{ .Values.acWallController.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.acWallController.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.acWallController.config.DB_NAME }}"

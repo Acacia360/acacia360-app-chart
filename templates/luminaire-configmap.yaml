@@ -1,0 +1,12 @@
+# Luminaire Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-luminaire-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.luminaire.config.PORT }}"
+  DB_HOST: "{{ .Values.luminaire.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.luminaire.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.luminaire.config.DB_NAME }}"

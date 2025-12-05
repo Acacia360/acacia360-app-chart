@@ -1,0 +1,17 @@
+# Boiler Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-boiler-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.boiler.config.PORT }}"
+  DB_HOST: "{{ .Values.boiler.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.boiler.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.boiler.config.DB_NAME }}"
+
+  # Internal microservice URLs
+  BOILER_SERVICE_URL: "{{ .Values.gateway.config.BOILER_SERVICE_URL }}"
+  SENSOR_SERVICE_URL: "{{ .Values.gateway.config.SENSOR_SERVICE_URL }}"
+  EVENTS_SERVICE_URL: "{{ .Values.gateway.config.EVENTS_SERVICE_URL }}"

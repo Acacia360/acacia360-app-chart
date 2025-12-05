@@ -1,0 +1,16 @@
+# Kettle Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-kettle-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: kettle-service
+spec:
+  type: {{ .Values.kettle.service.type }}
+  selector:
+    app: kettle-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.kettle.service.port }}
+      targetPort: {{ .Values.kettle.service.targetPort }}

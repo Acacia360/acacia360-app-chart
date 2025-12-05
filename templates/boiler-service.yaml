@@ -1,0 +1,16 @@
+# Boiler Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-boiler-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: boiler-service
+spec:
+  type: {{ .Values.boiler.service.type }}
+  selector:
+    app: boiler-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.boiler.service.port }}
+      targetPort: {{ .Values.boiler.service.targetPort }}

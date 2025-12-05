@@ -1,0 +1,12 @@
+# HVAC Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-hvac-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.hvac.config.PORT }}"
+  DB_HOST: "{{ .Values.hvac.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.hvac.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.hvac.config.DB_NAME }}"

@@ -1,0 +1,16 @@
+# Extractor Fan Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-extractor-fan-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: extractor-fan-service
+spec:
+  type: {{ .Values.extractorFan.service.type }}
+  selector:
+    app: extractor-fan-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.extractorFan.service.port }}
+      targetPort: {{ .Values.extractorFan.service.targetPort }}

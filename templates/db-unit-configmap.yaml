@@ -1,0 +1,12 @@
+# DB Unit Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-db-unit-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.dbUnit.config.PORT }}"
+  DB_HOST: "{{ .Values.dbUnit.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.dbUnit.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.dbUnit.config.DB_NAME }}"

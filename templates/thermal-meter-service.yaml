@@ -1,0 +1,16 @@
+# Thermal Meter Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-thermal-meter-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: thermal-meter-service
+spec:
+  type: {{ .Values.thermalMeter.service.type }}
+  selector:
+    app: thermal-meter-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.thermalMeter.service.port }}
+      targetPort: {{ .Values.thermalMeter.service.targetPort }}

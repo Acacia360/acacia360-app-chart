@@ -1,0 +1,12 @@
+# PIR Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-pir-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.pir.config.PORT }}"
+  DB_HOST: "{{ .Values.pir.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.pir.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.pir.config.DB_NAME }}"

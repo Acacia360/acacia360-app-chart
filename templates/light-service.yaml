@@ -1,0 +1,16 @@
+# Light Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-light-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: light-service
+spec:
+  type: {{ .Values.light.service.type }}
+  selector:
+    app: light-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.light.service.port }}
+      targetPort: {{ .Values.light.service.targetPort }}

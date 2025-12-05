@@ -1,0 +1,16 @@
+# WiFi AP Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-wifi-ap-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: wifi-ap-service
+spec:
+  type: {{ .Values.wifiAp.service.type }}
+  selector:
+    app: wifi-ap-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.wifiAp.service.port }}
+      targetPort: {{ .Values.wifiAp.service.targetPort }}

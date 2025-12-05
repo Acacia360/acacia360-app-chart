@@ -1,0 +1,16 @@
+# HVAC Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-hvac-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: hvac-service
+spec:
+  type: {{ .Values.hvac.service.type }}
+  selector:
+    app: hvac-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.hvac.service.port }}
+      targetPort: {{ .Values.hvac.service.targetPort }}

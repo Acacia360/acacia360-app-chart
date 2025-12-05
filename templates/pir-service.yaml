@@ -1,0 +1,16 @@
+# PIR Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-pir-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: pir-service
+spec:
+  type: {{ .Values.pir.service.type }}
+  selector:
+    app: pir-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.pir.service.port }}
+      targetPort: {{ .Values.pir.service.targetPort }}

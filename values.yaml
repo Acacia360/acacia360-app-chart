@@ -642,6 +642,842 @@ housekeepingMaintenance:
       cpu: "500m"
       memory: "512Mi"
 
+# AC WALL CONTROLLER SERVICE (ac-wall-controller-service)
+acWallController:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/ac-wall-controller-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3020
+    targetPort: 3020
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3020"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "ac_wall_controller_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# AHU SERVICE (ahu-service)
+ahu:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/ahu-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3021
+    targetPort: 3021
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3021"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "ahu_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# BOILER SERVICE (boiler-service)
+boiler:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/boiler-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3022
+    targetPort: 3022
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3022"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "boiler_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# DB UNIT SERVICE (db-unit-service)
+dbUnit:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/db-unit-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3023
+    targetPort: 3023
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3023"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "db_unit_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# ELECTRICAL METER SERVICE (electrical-meter-service)
+electricalMeter:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/electrical-meter-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3024
+    targetPort: 3024
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3024"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "electrical_meter_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# EXTRACTOR FAN SERVICE (extractor-fan-service)
+extractorFan:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/extractor-fan-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3025
+    targetPort: 3025
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3025"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "extractor_fan_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# FAN SERVICE (fan-service)
+fan:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/fan-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3026
+    targetPort: 3026
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3026"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "fan_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# FCU SERVICE (fcu-service)
+fcu:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/fcu-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3027
+    targetPort: 3027
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3027"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "fcu_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# FLOW METER SERVICE (flow-meter-service)
+flowMeter:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/flow-meter-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3028
+    targetPort: 3028
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3028"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "flow_meter_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# HVAC SERVICE (hvac-service)
+hvac:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/hvac-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3029
+    targetPort: 3029
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3029"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "hvac_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# KETTLE SERVICE (kettle-service)
+kettle:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/kettle-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3030
+    targetPort: 3030
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3030"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "kettle_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# LIGHT SERVICE (light-service)
+light:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/light-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3031
+    targetPort: 3031
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3031"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "light_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# LUMINAIRE SERVICE (luminaire-service)
+luminaire:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/luminaire-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3032
+    targetPort: 3032
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3032"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "luminaire_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# PIR SERVICE (pir-service)
+pir:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/pir-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3033
+    targetPort: 3033
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3033"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "pir_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# SENSOR SERVICE (sensor-service)
+sensor:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/sensor-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3034
+    targetPort: 3034
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3034"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "sensor_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# SOCKET SERVICE (socket-service)
+socket:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/socket-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3035
+    targetPort: 3035
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3035"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "socket_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# SWITCH SERVICE (switch-service)
+switch:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/switch-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3036
+    targetPort: 3036
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3036"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "switch_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# TELEPHONE SERVICE (telephone-service)
+telephone:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/telephone-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3037
+    targetPort: 3037
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3037"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "telephone_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# TELEVISION SERVICE (television-service)
+television:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/television-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3038
+    targetPort: 3038
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3038"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "television_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# THERMAL METER SERVICE (thermal-meter-service)
+thermalMeter:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/thermal-meter-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3039
+    targetPort: 3039
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3039"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "thermal_meter_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# WATER PUMP SERVICE (water-pump-service)
+waterPump:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/water-pump-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3040
+    targetPort: 3040
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3040"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "water_pump_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# WIFI AP SERVICE (wifi-ap-service)
+wifiAp:
+  # Deployment Settings
+  replicaCount: 2
+  image:
+    repository: acaciagreentechnologies/wifi-ap-service
+    tag: "1.0"
+    pullPolicy: Always
+  
+  # Service Settings
+  service:
+    port: 3041
+    targetPort: 3041
+    type: ClusterIP
+
+  # ConfigMap Variables
+  config:
+    PORT: "3041"
+    # DB_HOST: "host.docker.internal"
+    DB_HOST: "192.168.1.135"
+    DB_PORT: "5432"
+    DB_NAME: "wifi_ap_db"
+
+  # Secret Variables
+  secret:
+    DB_USER: "postgres"
+    DB_PASSWORD: "postgres"
+    JWT_SECRET: "supersecretkey"
+
+  # Resource Limits
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
 # GENERIC/UNUSED SECTIONS (Retained for completeness)
 replicaCount: 1 
 imagePullSecrets: []

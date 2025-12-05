@@ -1,0 +1,16 @@
+# Socket Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-socket-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: socket-service
+spec:
+  type: {{ .Values.socket.service.type }}
+  selector:
+    app: socket-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.socket.service.port }}
+      targetPort: {{ .Values.socket.service.targetPort }}

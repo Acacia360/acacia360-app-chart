@@ -1,0 +1,12 @@
+# Kettle Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-kettle-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.kettle.config.PORT }}"
+  DB_HOST: "{{ .Values.kettle.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.kettle.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.kettle.config.DB_NAME }}"

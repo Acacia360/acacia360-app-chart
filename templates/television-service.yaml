@@ -1,0 +1,16 @@
+# Television Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-television-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: television-service
+spec:
+  type: {{ .Values.television.service.type }}
+  selector:
+    app: television-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.television.service.port }}
+      targetPort: {{ .Values.television.service.targetPort }}

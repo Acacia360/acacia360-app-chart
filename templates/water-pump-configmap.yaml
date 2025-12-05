@@ -1,0 +1,17 @@
+# Water Pump Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-water-pump-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.waterPump.config.PORT }}"
+  DB_HOST: "{{ .Values.waterPump.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.waterPump.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.waterPump.config.DB_NAME }}"
+
+  # Internal microservice URLs
+  WATER_PUMP_SERVICE_URL: "{{ .Values.gateway.config.WATER_PUMP_SERVICE_URL }}"
+  SENSOR_SERVICE_URL: "{{ .Values.gateway.config.SENSOR_SERVICE_URL }}"
+  EVENTS_SERVICE_URL: "{{ .Values.gateway.config.EVENTS_SERVICE_URL }}"

@@ -1,0 +1,16 @@
+# Telephone Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-telephone-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: telephone-service
+spec:
+  type: {{ .Values.telephone.service.type }}
+  selector:
+    app: telephone-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.telephone.service.port }}
+      targetPort: {{ .Values.telephone.service.targetPort }}

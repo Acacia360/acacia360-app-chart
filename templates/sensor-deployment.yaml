@@ -1,0 +1,64 @@
+# Sensor Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-sensor
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: sensor-service
+spec:
+  replicas: {{ .Values.sensor.replicaCount }}
+  selector:
+    matchLabels:
+      app: sensor-service
+  template:
+    metadata:
+      labels:
+        app: sensor-service
+    spec:
+      containers:
+        - name: sensor-service
+          image: "{{ .Values.sensor.image.repository }}:{{ .Values.sensor.image.tag }}"
+          imagePullPolicy: {{ .Values.sensor.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.sensor.service.port }}
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-sensor-config
+            - secretRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-sensor-secret
+
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-sensor-secret
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-sensor-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-sensor-secret
+                  key: JWT_SECRET
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.sensor.service.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.sensor.service.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          resources:
+            {{- toYaml .Values.sensor.resources | nindent 12 }}

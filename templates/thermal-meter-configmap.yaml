@@ -1,0 +1,12 @@
+# Thermal Meter Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-thermal-meter-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.thermalMeter.config.PORT }}"
+  DB_HOST: "{{ .Values.thermalMeter.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.thermalMeter.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.thermalMeter.config.DB_NAME }}"

@@ -1,0 +1,12 @@
+# Extractor Fan Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-extractor-fan-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.extractorFan.config.PORT }}"
+  DB_HOST: "{{ .Values.extractorFan.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.extractorFan.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.extractorFan.config.DB_NAME }}"

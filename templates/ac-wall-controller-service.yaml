@@ -1,0 +1,16 @@
+# AC Wall Controller Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-ac-wall-controller-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: ac-wall-controller-service
+spec:
+  type: {{ .Values.acWallController.type }}
+  selector:
+    app: ac-wall-controller-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.acWallController.service.port }}
+      targetPort: {{ .Values.acWallController.service.targetPort }}

@@ -1,0 +1,16 @@
+# FCU Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-fcu-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: fcu-service
+spec:
+  type: {{ .Values.fcu.service.type }}
+  selector:
+    app: fcu-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.fcu.service.port }}
+      targetPort: {{ .Values.fcu.service.targetPort }}

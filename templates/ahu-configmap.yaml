@@ -1,0 +1,12 @@
+# AHU Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-ahu-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.ahu.config.PORT }}"
+  DB_HOST: "{{ .Values.ahu.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.ahu.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.ahu.config.DB_NAME }}"

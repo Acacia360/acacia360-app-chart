@@ -1,0 +1,16 @@
+# Switch Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-switch-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: switch-service
+spec:
+  type: {{ .Values.switch.service.type }}
+  selector:
+    app: switch-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.switch.service.port }}
+      targetPort: {{ .Values.switch.service.targetPort }}

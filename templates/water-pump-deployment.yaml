@@ -1,0 +1,64 @@
+# Water Pump Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-water-pump
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: water-pump-service
+spec:
+  replicas: {{ .Values.waterPump.replicaCount }}
+  selector:
+    matchLabels:
+      app: water-pump-service
+  template:
+    metadata:
+      labels:
+        app: water-pump-service
+    spec:
+      containers:
+        - name: water-pump-service
+          image: "{{ .Values.waterPump.image.repository }}:{{ .Values.waterPump.image.tag }}"
+          imagePullPolicy: {{ .Values.waterPump.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.waterPump.service.port }}
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-water-pump-config
+            - secretRef:
+                name: {{ include "acacia360-app-chart.fullname" . }}-water-pump-secret
+
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-water-pump-secret
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-water-pump-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-water-pump-secret
+                  key: JWT_SECRET
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.waterPump.service.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.waterPump.service.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          resources:
+            {{- toYaml .Values.waterPump.resources | nindent 12 }}

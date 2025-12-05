@@ -1,0 +1,16 @@
+# Electrical Meter Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-electrical-meter-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: electrical-meter-service
+spec:
+  type: {{ .Values.electricalMeter.service.type }}
+  selector:
+    app: electrical-meter-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.electricalMeter.service.port }}
+      targetPort: {{ .Values.electricalMeter.service.targetPort }}

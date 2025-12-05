@@ -1,0 +1,16 @@
+# AHU Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-ahu-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: ahu-service
+spec:
+  type: {{ .Values.ahu.service.type }}
+  selector:
+    app: ahu-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.ahu.service.port }}
+      targetPort: {{ .Values.ahu.service.targetPort }}

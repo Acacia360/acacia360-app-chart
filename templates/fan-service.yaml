@@ -1,0 +1,16 @@
+# Fan Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-fan-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: fan-service
+spec:
+  type: {{ .Values.fan.service.type }}
+  selector:
+    app: fan-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.fan.service.port }}
+      targetPort: {{ .Values.fan.service.targetPort }}

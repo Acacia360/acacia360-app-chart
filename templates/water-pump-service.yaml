@@ -1,0 +1,16 @@
+# Water Pump Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-water-pump-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: water-pump-service
+spec:
+  type: {{ .Values.waterPump.service.type }}
+  selector:
+    app: water-pump-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.waterPump.service.port }}
+      targetPort: {{ .Values.waterPump.service.targetPort }}

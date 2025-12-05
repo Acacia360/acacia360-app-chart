@@ -1,0 +1,12 @@
+# Sensor Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-sensor-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.sensor.config.PORT }}"
+  DB_HOST: "{{ .Values.sensor.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.sensor.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.sensor.config.DB_NAME }}"

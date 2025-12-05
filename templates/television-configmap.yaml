@@ -1,0 +1,12 @@
+# Television Configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-television-config
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.television.config.PORT }}"
+  DB_HOST: "{{ .Values.television.config.DB_HOST }}"
+  DB_PORT: "{{ .Values.television.config.DB_PORT }}"
+  DB_NAME: "{{ .Values.television.config.DB_NAME }}"

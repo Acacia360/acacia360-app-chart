@@ -1,0 +1,16 @@
+# Luminaire Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acacia360-app-chart.fullname" . }}-luminaire-service
+  labels:
+    {{- include "acacia360-app-chart.labels" . | nindent 4 }}
+    app: luminaire-service
+spec:
+  type: {{ .Values.luminaire.service.type }}
+  selector:
+    app: luminaire-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.luminaire.service.port }}
+      targetPort: {{ .Values.luminaire.service.targetPort }}

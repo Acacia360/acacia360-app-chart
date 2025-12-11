@@ -16,6 +16,17 @@ spec:
       labels:
         app: task-service
     spec:
+      initContainers:
+      - name: wait-for-kafka
+        image: busybox
+        command:
+          - sh
+          - -c
+          - |
+            until nc -z kafka 9092; do
+              echo "Waiting for kafka...";
+              sleep 5;
+            done
       containers:
         - name: task-service
           image: "{{ .Values.task.image.repository }}:{{ .Values.task.image.tag }}"
@@ -45,6 +56,11 @@ spec:
                 secretKeyRef:
                   name: {{ include "acacia360-app-chart.fullname" . }}-task-secret
                   key: JWT_SECRET
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "acacia360-app-chart.fullname" . }}-task-config
+                  key: KAFKA_BOOTSTRAP_SERVERS
 
           livenessProbe:
             httpGet:

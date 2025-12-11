@@ -10,3 +10,4 @@ data:
   DB_HOST: "{{ .Values.task.config.DB_HOST }}"
   DB_PORT: "{{ .Values.task.config.DB_PORT }}"
   DB_NAME: "{{ .Values.task.config.DB_NAME }}"
+  KAFKA_BOOTSTRAP_SERVERS: "{{ .Values.task.config.KAFKA_BOOTSTRAP_SERVERS }}"

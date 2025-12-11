@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: ac-wall-controller-service
-          image: "{{ .Values.acWallController.image.repository }}:{{ .Values.ac-wall-controller.image.tag }}"
+          image: "{{ .Values.acWallController.image.repository }}:{{ .Values.acWallController.image.tag }}"
           imagePullPolicy: {{ .Values.acWallController.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.acWallController.service.port }}

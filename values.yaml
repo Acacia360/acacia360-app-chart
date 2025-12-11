@@ -7,11 +7,11 @@ global:
 # FRONTEND SERVICE (acacia360-frontend)
 frontend:
   # Deployment Settings
-  replicaCount: 3
+  replicaCount: 2
   image:
     repository: acaciagreentechnologies/acacia360-frontend
     tag: "1.0"
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   
   # Service Settings (Required for deployment/ingress templates)
   service:
@@ -38,10 +38,13 @@ frontend:
     apiGatewayPort: 3050
     apiPathPrefix: /api/
 
+  # Secret Variables
+  secret: {}
+
 # GATEWAY SERVICE (gateway-service)
 gateway:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/gateway-service
     tag: "1.0"
@@ -101,7 +104,7 @@ gateway:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -110,7 +113,7 @@ gateway:
 # AUTHENTICATION SERVICE (authentication-service)
 authentication:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/authentication-service
     tag: "1.0"
@@ -139,7 +142,7 @@ authentication:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -148,7 +151,7 @@ authentication:
 # USER SERVICE (user-service)
 user:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/user-service
     tag: "1.0"
@@ -179,7 +182,7 @@ user:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -188,7 +191,7 @@ user:
 # PORTFOLIO SERVICE (portfolio-service)
 portfolio:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/portfolio-service
     tag: "1.0"
@@ -217,7 +220,7 @@ portfolio:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -226,7 +229,7 @@ portfolio:
 # PROPERTY SERVICE (property-service)
 property:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/property-service
     tag: "1.0"
@@ -255,7 +258,7 @@ property:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -264,7 +267,7 @@ property:
 # TASK SERVICE (task-service)
 task:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/task-service
     tag: "1.0"
@@ -293,7 +296,7 @@ task:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -302,7 +305,7 @@ task:
 # NOTIFICATIONS SERVICE (notifications-service)
 notifications:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/notifications-service
     tag: "1.0"
@@ -331,7 +334,7 @@ notifications:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -340,7 +343,7 @@ notifications:
 # BUILDING STATISTICS SERVICE (building-statistics-service)
 buildingStatistics:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/building-statistics-service
     tag: "1.0"
@@ -369,7 +372,7 @@ buildingStatistics:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -378,7 +381,7 @@ buildingStatistics:
 # OUTDOOR STATISTICS SERVICE (outdoor-statistics-service)
 outdoorStatistics:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/outdoor-statistics-service
     tag: "1.0"
@@ -408,7 +411,7 @@ outdoorStatistics:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -417,7 +420,7 @@ outdoorStatistics:
 # FLOOR SERVICE (floor-service)
 floor:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/floor-service
     tag: "1.0"
@@ -446,7 +449,7 @@ floor:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -455,7 +458,7 @@ floor:
 # ROOM SERVICE (room-service)
 room:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/room-service
     tag: "1.0"
@@ -484,7 +487,7 @@ room:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -493,7 +496,7 @@ room:
 # AREA SERVICE (area-service)
 area:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/area-service
     tag: "1.0"
@@ -522,7 +525,7 @@ area:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -531,7 +534,7 @@ area:
 # REPORTS SERVICE (reports-service)
 reports:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/reports-service
     tag: "1.0"
@@ -560,7 +563,7 @@ reports:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -569,7 +572,7 @@ reports:
 # EVENTS SERVICE (events-service)
 events:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/events-service
     tag: "1.0"
@@ -598,7 +601,7 @@ events:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -607,7 +610,7 @@ events:
 # HOUSEKEEPING-MAINTENANCE SERVICE (housekeeping-maintenance-service)
 housekeepingMaintenance:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/housekeeping-maintenance-service
     tag: "1.0"
@@ -636,7 +639,7 @@ housekeepingMaintenance:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -645,7 +648,7 @@ housekeepingMaintenance:
 # AC WALL CONTROLLER SERVICE (ac-wall-controller-service)
 acWallController:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/ac-wall-controller-service
     tag: "1.0"
@@ -674,7 +677,7 @@ acWallController:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -683,7 +686,7 @@ acWallController:
 # AHU SERVICE (ahu-service)
 ahu:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/ahu-service
     tag: "1.0"
@@ -712,7 +715,7 @@ ahu:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -721,7 +724,7 @@ ahu:
 # BOILER SERVICE (boiler-service)
 boiler:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/boiler-service
     tag: "1.0"
@@ -750,7 +753,7 @@ boiler:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -759,7 +762,7 @@ boiler:
 # DB UNIT SERVICE (db-unit-service)
 dbUnit:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/db-unit-service
     tag: "1.0"
@@ -788,7 +791,7 @@ dbUnit:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -797,7 +800,7 @@ dbUnit:
 # ELECTRICAL METER SERVICE (electrical-meter-service)
 electricalMeter:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/electrical-meter-service
     tag: "1.0"
@@ -826,7 +829,7 @@ electricalMeter:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -835,7 +838,7 @@ electricalMeter:
 # EXTRACTOR FAN SERVICE (extractor-fan-service)
 extractorFan:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/extractor-fan-service
     tag: "1.0"
@@ -864,7 +867,7 @@ extractorFan:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -873,7 +876,7 @@ extractorFan:
 # FAN SERVICE (fan-service)
 fan:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/fan-service
     tag: "1.0"
@@ -902,7 +905,7 @@ fan:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -911,7 +914,7 @@ fan:
 # FCU SERVICE (fcu-service)
 fcu:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/fcu-service
     tag: "1.0"
@@ -940,7 +943,7 @@ fcu:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -949,7 +952,7 @@ fcu:
 # FLOW METER SERVICE (flow-meter-service)
 flowMeter:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/flow-meter-service
     tag: "1.0"
@@ -978,7 +981,7 @@ flowMeter:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -987,7 +990,7 @@ flowMeter:
 # HVAC SERVICE (hvac-service)
 hvac:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/hvac-service
     tag: "1.0"
@@ -1016,7 +1019,7 @@ hvac:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1025,7 +1028,7 @@ hvac:
 # KETTLE SERVICE (kettle-service)
 kettle:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/kettle-service
     tag: "1.0"
@@ -1054,7 +1057,7 @@ kettle:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1063,7 +1066,7 @@ kettle:
 # LIGHT SERVICE (light-service)
 light:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/light-service
     tag: "1.0"
@@ -1092,7 +1095,7 @@ light:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1101,7 +1104,7 @@ light:
 # LUMINAIRE SERVICE (luminaire-service)
 luminaire:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/luminaire-service
     tag: "1.0"
@@ -1130,7 +1133,7 @@ luminaire:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1139,7 +1142,7 @@ luminaire:
 # PIR SERVICE (pir-service)
 pir:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/pir-service
     tag: "1.0"
@@ -1168,7 +1171,7 @@ pir:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1177,7 +1180,7 @@ pir:
 # SENSOR SERVICE (sensor-service)
 sensor:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/sensor-service
     tag: "1.0"
@@ -1206,7 +1209,7 @@ sensor:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1215,7 +1218,7 @@ sensor:
 # SOCKET SERVICE (socket-service)
 socket:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/socket-service
     tag: "1.0"
@@ -1244,7 +1247,7 @@ socket:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1253,7 +1256,7 @@ socket:
 # SWITCH SERVICE (switch-service)
 switch:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/switch-service
     tag: "1.0"
@@ -1282,7 +1285,7 @@ switch:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1291,7 +1294,7 @@ switch:
 # TELEPHONE SERVICE (telephone-service)
 telephone:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/telephone-service
     tag: "1.0"
@@ -1320,7 +1323,7 @@ telephone:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1329,7 +1332,7 @@ telephone:
 # TELEVISION SERVICE (television-service)
 television:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/television-service
     tag: "1.0"
@@ -1358,7 +1361,7 @@ television:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1367,7 +1370,7 @@ television:
 # THERMAL METER SERVICE (thermal-meter-service)
 thermalMeter:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/thermal-meter-service
     tag: "1.0"
@@ -1396,7 +1399,7 @@ thermalMeter:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1405,7 +1408,7 @@ thermalMeter:
 # WATER PUMP SERVICE (water-pump-service)
 waterPump:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/water-pump-service
     tag: "1.0"
@@ -1434,7 +1437,7 @@ waterPump:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -1443,7 +1446,7 @@ waterPump:
 # WIFI AP SERVICE (wifi-ap-service)
 wifiAp:
   # Deployment Settings
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: acaciagreentechnologies/wifi-ap-service
     tag: "1.0"
@@ -1472,7 +1475,7 @@ wifiAp:
   # Resource Limits
   resources:
     requests:
-      cpu: "100m"
+      cpu: "20m"
       memory: "128Mi"
     limits:
       cpu: "500m"

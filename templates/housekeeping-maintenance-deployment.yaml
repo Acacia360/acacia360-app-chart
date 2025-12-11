@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ printf "%s-%s" (include "acacia360-app-chart.fullname" .) "housekeeping-maintenance" | trunc 63 | trimSuffix "-" }}
+  name: housekeeping-maintenance
   labels:
     {{- include "acacia360-app-chart.labels" . | nindent 4 }}
     app: housekeeping-maintenance-service
@@ -20,30 +20,33 @@ spec:
         - name: housekeeping-maintenance-service
           image: "{{ .Values.housekeepingMaintenance.image.repository }}:{{ .Values.housekeepingMaintenance.image.tag }}"
           imagePullPolicy: {{ .Values.housekeepingMaintenance.image.pullPolicy }}
+
           ports:
             - containerPort: {{ .Values.housekeepingMaintenance.service.port }}
 
           envFrom:
             - configMapRef:
-                name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-config
+                name: housekeeping-maintenance-config
             - secretRef:
-                name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
+                name: housekeeping-maintenance-secret
 
           env:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
+                  name: housekeeping-maintenance-secret
                   key: DB_USER
+
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
+                  name: housekeeping-maintenance-secret
                   key: DB_PASSWORD
+
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
+                  name: housekeeping-maintenance-secret
                   key: JWT_SECRET
 
           livenessProbe:

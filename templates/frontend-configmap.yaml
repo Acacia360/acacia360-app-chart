@@ -10,7 +10,7 @@ data:
   nginx.conf: |
     server {
       listen 80;
-      server_name {{ .Values.frontend.ingress.host | default "acacia360.local" }};
+      server_name _;
 
       root /usr/share/nginx/html;
       index index.html;

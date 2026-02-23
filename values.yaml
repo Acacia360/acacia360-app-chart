@@ -128,7 +128,7 @@ authentication:
   config:
     PORT: "3000"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "authentication_db"
 
@@ -166,7 +166,7 @@ user:
   config:
     PORT: "3001"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "user_db"
 
@@ -206,7 +206,7 @@ portfolio:
   config:
     PORT: "3002"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "portfolio_db"
 
@@ -244,7 +244,7 @@ property:
   config:
     PORT: "3003"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "property_db"
 
@@ -282,7 +282,7 @@ task:
   config:
     PORT: "3004"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "task_db"
 
@@ -320,7 +320,7 @@ notifications:
   config:
     PORT: "3005"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "notifications_db"
 
@@ -358,7 +358,7 @@ buildingStatistics:
   config:
     PORT: "3006"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "building_statistics_db"
 
@@ -396,7 +396,7 @@ outdoorStatistics:
   config:
     PORT: "3007"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "outdoor_statistics_db"
 
@@ -435,7 +435,7 @@ floor:
   config:
     PORT: "3008"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "floor_db"
 
@@ -473,7 +473,7 @@ room:
   config:
     PORT: "3009"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "room_db"
 
@@ -511,7 +511,7 @@ area:
   config:
     PORT: "3010"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "area_db"
 
@@ -549,7 +549,7 @@ reports:
   config:
     PORT: "3011"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "reports_db"
 
@@ -587,7 +587,7 @@ events:
   config:
     PORT: "3012"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "events_db"
 
@@ -625,7 +625,7 @@ housekeepingMaintenance:
   config:
     PORT: "3013"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "housekeeping_maintenance_db"
 
@@ -663,7 +663,7 @@ acWallController:
   config:
     PORT: "3020"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "ac_wall_controller_db"
 
@@ -701,7 +701,7 @@ ahu:
   config:
     PORT: "3021"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "ahu_db"
 
@@ -739,7 +739,7 @@ boiler:
   config:
     PORT: "3022"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "boiler_db"
 
@@ -777,7 +777,7 @@ dbUnit:
   config:
     PORT: "3023"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "db_unit_db"
 
@@ -815,7 +815,7 @@ electricalMeter:
   config:
     PORT: "3024"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "electrical_meter_db"
 
@@ -853,7 +853,7 @@ extractorFan:
   config:
     PORT: "3025"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "extractor_fan_db"
 
@@ -891,7 +891,7 @@ fan:
   config:
     PORT: "3026"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "fan_db"
 
@@ -929,7 +929,7 @@ fcu:
   config:
     PORT: "3027"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "fcu_db"
 
@@ -967,7 +967,7 @@ flowMeter:
   config:
     PORT: "3028"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "flow_meter_db"
 
@@ -1005,7 +1005,7 @@ hvac:
   config:
     PORT: "3029"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "hvac_db"
 
@@ -1043,7 +1043,7 @@ kettle:
   config:
     PORT: "3030"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "kettle_db"
 
@@ -1081,7 +1081,7 @@ light:
   config:
     PORT: "3031"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "light_db"
 
@@ -1119,7 +1119,7 @@ luminaire:
   config:
     PORT: "3032"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "luminaire_db"
 
@@ -1157,7 +1157,7 @@ pir:
   config:
     PORT: "3033"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "pir_db"
 
@@ -1195,7 +1195,7 @@ sensor:
   config:
     PORT: "3034"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "sensor_db"
 
@@ -1233,7 +1233,7 @@ socket:
   config:
     PORT: "3035"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "socket_db"
 
@@ -1271,7 +1271,7 @@ switch:
   config:
     PORT: "3036"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "switch_db"
 
@@ -1309,7 +1309,7 @@ telephone:
   config:
     PORT: "3037"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "telephone_db"
 
@@ -1347,7 +1347,7 @@ television:
   config:
     PORT: "3038"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "television_db"
 
@@ -1385,7 +1385,7 @@ thermalMeter:
   config:
     PORT: "3039"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "thermal_meter_db"
 
@@ -1423,7 +1423,7 @@ waterPump:
   config:
     PORT: "3040"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "water_pump_db"
 
@@ -1461,7 +1461,7 @@ wifiAp:
   config:
     PORT: "3041"
     # DB_HOST: "host.docker.internal"
-    DB_HOST: "192.168.1.135"
+    DB_HOST: "localhost"
     DB_PORT: "5432"
     DB_NAME: "wifi_ap_db"
 

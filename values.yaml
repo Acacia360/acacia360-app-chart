@@ -68,9 +68,9 @@ gateway:
     OUTDOOR_STATISTICS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-outdoor-statistics-service.acacia360.svc.cluster.local:3007"
     FLOOR_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-floor-service.acacia360.svc.cluster.local:3008"
     ROOM_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-room-service.acacia360.svc.cluster.local:3009"
-    AREA_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-area-service.acacia360.svc.cluster.local:30010"
-    EVENTS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-events-service.acacia360.svc.cluster.local:3011"
-    REPORTS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-reports-service.acacia360.svc.cluster.local:3012"
+    AREA_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-area-service.acacia360.svc.cluster.local:3010"
+    REPORTS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-reports-service.acacia360.svc.cluster.local:3011"
+    EVENTS_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-events-service.acacia360.svc.cluster.local:3012"
     HOUSEKEEPING_MAINTENANCE_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-houskeeping-maint.acacia360.svc.cluster.local:3013"
 
     AC_WALL_CONTROLLER_SERVICE_URL: "http://acacia360-app-acacia360-app-chart-ac-wall-controller-service.acacia360.svc.cluster.local:3020"

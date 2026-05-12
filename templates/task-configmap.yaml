@@ -11,3 +11,7 @@ data:
   DB_PORT: "{{ .Values.task.config.DB_PORT }}"
   DB_NAME: "{{ .Values.task.config.DB_NAME }}"
   KAFKA_BOOTSTRAP_SERVERS: "{{ .Values.task.config.KAFKA_BOOTSTRAP_SERVERS }}"
+
+# Internal microservice URLs
+  USER_SERVICE_URL: "{{ .Values.gateway.config.USER_SERVICE_URL }}"
+  ROOM_SERVICE_URL: "{{ .Values.gateway.config.ROOM_SERVICE_URL }}"

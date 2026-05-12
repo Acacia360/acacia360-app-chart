@@ -9,10 +9,10 @@ metadata:
     app: acacia360-frontend
   annotations:
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://192.168.1.135:8085,http://acacia360.local,http://192.168.1.135:80"
     nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-headers: "Authorization, Content-Type, Accept"
-    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "false"
 spec:
   ingressClassName: {{ .Values.frontend.ingress.className }}
   rules:
@@ -34,12 +34,4 @@ spec:
                 port:
                   number: {{ .Values.gateway.service.port }}
 
-          # PMS App route
-          - path: /pms/
-            pathType: Prefix
-            backend:
-              service:
-                name: acacia-pms-service
-                port:
-                  number: 8085
 {{- end }}

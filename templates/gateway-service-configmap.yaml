@@ -35,7 +35,7 @@ data:
   FLOW_METER_SERVICE_URL: "{{ .Values.gateway.config.FLOW_METER_SERVICE_URL }}"
   HVAC_SERVICE_URL: "{{ .Values.gateway.config.HVAC_SERVICE_URL }}"
   KETTLE_SERVICE_URL: "{{ .Values.gateway.config.KETTLE_SERVICE_URL }}"
-  LIGHT_CONTROLLER_SERVICE_URL: "{{ .Values.gateway.config.LIGHT_CONTROLLER_SERVICE_URL }}"
+  LIGHT_SERVICE_URL: "{{ .Values.gateway.config.LIGHT_SERVICE_URL }}"
   LUMINAIRE_SERVICE_URL: "{{ .Values.gateway.config.LUMINAIRE_SERVICE_URL }}"
   PIR_SERVICE_URL: "{{ .Values.gateway.config.PIR_SERVICE_URL }}"
   SENSOR_SERVICE_URL: "{{ .Values.gateway.config.SENSOR_SERVICE_URL }}"

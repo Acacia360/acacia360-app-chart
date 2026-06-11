@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: housekeeping-maintenance
+  name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance
   labels:
     {{- include "acacia360-app-chart.labels" . | nindent 4 }}
     app: housekeeping-maintenance-service
@@ -26,27 +26,27 @@ spec:
 
           envFrom:
             - configMapRef:
-                name: housekeeping-maintenance-config
+                name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-config
             - secretRef:
-                name: housekeeping-maintenance-secret
+                name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
 
           env:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: housekeeping-maintenance-secret
+                  name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
                   key: DB_USER
 
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: housekeeping-maintenance-secret
+                  name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
                   key: DB_PASSWORD
 
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: housekeeping-maintenance-secret
+                  name: {{ include "acacia360-app-chart.fullname" . }}-housekeeping-maintenance-secret
                   key: JWT_SECRET
 
           livenessProbe:
